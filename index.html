@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neela Sai | Developer Portfolio</title>
+    <style>
+        /* CSS Styling */
+        :root {
+            --primary-color: #3B82F6; /* Blue */
+            --primary-hover: #2563EB;
+            --light-bg: #F9FAFB; /* Light Gray */
+            --dark-bg: #111827; /* Dark Gray */
+            --light-card: #FFFFFF;
+            --dark-card: #1F2937;
+            --light-text: #1F2937;
+            --dark-text: #F9FAFB;
+            --light-subtle-text: #6B7280;
+            --dark-subtle-text: #9CA3AF;
+            --border-light: #E5E7EB;
+            --border-dark: #374151;
+            --shadow-color: rgba(0, 0, 0, 0.05);
+            
+            /* Default to light mode */
+            --bg-color: var(--light-bg);
+            --card-color: var(--light-card);
+            --text-color: var(--light-text);
+            --subtle-text: var(--light-subtle-text);
+            --border-color: var(--border-light);
+        }
+
+        body.dark-mode {
+            --bg-color: var(--dark-bg);
+            --card-color: var(--dark-card);
+            --text-color: var(--dark-text);
+            --subtle-text: var(--dark-subtle-text);
+            --border-color: var(--border-dark);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header & Navigation --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 1000;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-switcher {
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- Hero Section --- */
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 90vh;
+            padding: 80px 0;
+        }
+        
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+        
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--subtle-text);
+            margin: 20px 0 30px;
+        }
+        
+        .hero-image img {
+            /*max-width: 350px;*/
+            height: 250px;
+            width: 250px;
+            border-radius: 250px;
+            border: 5px solid var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h2.section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image img {
+            width: 300px;
+            border-radius: 12px;
+        }
+        
+        .about-text p {
+            line-height: 1.8;
+            color: var(--subtle-text);
+        }
+        
+        /* --- Skills Section --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-card {
+            background: var(--card-color);
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px var(--shadow-color);
+            font-weight: 600;
+            transition: transform 0.2s, color 0.2s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            color: var(--primary-color);
+        }
+        
+        /* --- Certifications Section --- */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .cert-card {
+            background: var(--card-color);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+            box-sizing: border-box;
+            cursor: pointer; /* Indicates the card is clickable */
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+
+        .cert-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .cert-issuer {
+            font-size: 0.9rem;
+            color: var(--subtle-text);
+        }
+
+        /* --- Projects Section --- */
+        .project-card {
+            background: var(--card-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            overflow: hidden;
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .project-info h3 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .tech-stack {
+            margin-top: 15px;
+        }
+        
+        .tech-stack span {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin: 5px 5px 5px 0;
+        }
+
+        /* --- Contact Section --- */
+        #contact {
+            text-align: center;
+        }
+        
+        #contact p {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--subtle-text);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: var(--subtle-text);
+        }
+
+        /* --- NEW: Lightbox Styles --- */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar container">
+        <a href="#" class="nav-logo">Neela Sai</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="theme-switcher" id="theme-toggle">🌙</div>
+    </nav>
+    
+    <section id="home" class="container">
+        <div class="hero-text">
+            <h1>Hi, I'm <span>Neela Sai</span></h1>
+            <p>A B.Tech student and aspiring software developer with a passion for building innovative solutions. I specialize in full-stack development and love bringing ideas to life through code.</p>
+            <a href="#projects" class="cta-button">View My Work</a>
+        </div>
+        <div class="hero-image">
+            <img src="C:\Users\neela\Documents\portfolio\images\IMG_8918.JPG" alt="Neela Sai">
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Coding workspace">
+                </div>
+                <div class="about-text">
+                    <h3>Developer & Innovator</h3>
+                    <p>
+                        Currently pursuing my B.Tech at VJIT, I am deeply fascinated by the power of technology to solve real-world problems. My journey began with a curiosity for how software works, and it has evolved into a passion for creating applications that are both functional and user-friendly.
+                        <br><br>
+                        I thrive on challenges and am constantly learning new technologies to expand my skillset. My foundation in Data Structures and Algorithms allows me to approach problems with a focus on efficiency and scalability.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">My Toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-card">C</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">Java</div>
+                <div class="skill-card">C++</div>
+                <div class="skill-card">HTML5</div>
+                <div class="skill-card">CSS3</div>
+                <div class="skill-card">JavaScript</div>
+                <div class="skill-card">SQL</div>
+                <div class="skill-card">DSA</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Credentials</h2>
+            <div class="certifications-grid">
+                <div class="cert-card" data-cert-image="C:\Users\neela\Documents\portfolio\Screenshot 2025-07-21 213304.png">
+                    <div class="cert-title">Programming Essentials in C</div>
+                    <div class="cert-issuer">Issued by Cisco</div>
+                </div>
+
+                <div class="cert-card" data-cert-image="C:\Users\neela\Documents\portfolio\images\Screenshot 2025-07-21 213210.png">
+                    <div class="cert-title">PCAP: Programming in Python</div>
+                    <div class="cert-issuer">Issued by Cisco</div>
+                </div>
+
+                <div class="cert-card" data-cert-image="C:\Users\neela\Documents\portfolio\images\Screenshot 2025-07-21 213240.png">
+                    <div class="cert-title">Oracle Database SQL</div>
+                    <div class="cert-issuer">Issued by Oracle</div>
+                </div>
+
+                <div class="cert-card" data-cert-image="C:\Users\neela\Documents\portfolio\images\Screenshot 2025-07-21 213253.png">
+                    <div class="cert-title">Certified Java Programmer</div>
+                    <div class="cert-issuer">Course Certification</div>
+                </div>
+                
+                <div class="cert-card" data-cert-image="C:\Users\neela\Documents\portfolio\images\Screenshot 2025-07-21 214627.png">
+                    <div class="cert-title">Business Analyst Certification</div>
+                    <div class="cert-issuer">Issued by Qlik</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Project</h2>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>IoT-Based Smart Electricity Bill Generator</h3>
+                    <p>An automated system that monitors real-time electricity consumption using IoT hardware and presents the data through a user-friendly web interface. This project aims to provide transparency in energy usage and eliminate manual billing errors.</p>
+                    <div class="tech-stack">
+                        <span>IoT</span>
+                        <span>C++ (Arduino)</span>
+                        <span>Python</span>
+                        <span>SQL</span>
+                        <span>HTML & CSS</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="C:\Users\neela\Documents\portfolio\images\projectreport.pdf" target="_blank" rel="noopener noreferrer" class="report-button">
+                            📄 View Full Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p>I'm currently seeking new opportunities and am open to collaboration. Whether you have a project in mind or just want to connect, feel free to reach out!</p>
+            <a href="mailto:neela.sai.email@example.com" class="cta-button">Say Hello</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Neela Sai. Built with and code.</p>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Certificate">
+        </div>
+    </div>
+
+    <script>
+        // --- Theme Switching Logic ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+
+        // --- NEW: Lightbox Logic ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const certCards = document.querySelectorAll('.cert-card');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        certCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const img_src = card.getAttribute('data-cert-image');
+                if (img_src) {
+                    lightboxImg.setAttribute('src', img_src);
+                    lightbox.style.display = 'flex';
+                }
+            });
+        });
+
+        // Function to close the lightbox
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+        }
+
+        // Close lightbox when clicking the 'x' button or the background
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
